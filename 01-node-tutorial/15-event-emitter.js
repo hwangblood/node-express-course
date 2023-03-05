@@ -1,9 +1,20 @@
-var events = require("events");
+// get back the class
+// if want custom extend from class
+// otherwise just for emitting and handling events create instance
+const EventEmitter = require("events");
 
-var eventEmitter = new events.EventEmitter();
+const eventEmitter = new EventEmitter();
 
-eventEmitter.on("my_event", () => {
-  console.log("data received successfully.");
+// on and emit methods
+// keep track of the order
+// additional arguments
+// built-in modules utilize it
+eventEmitter.on("my_event", (name, id) => {
+  console.log(`data received successfully. user ${name} with id '${id}'.`);
 });
 
-eventEmitter.emit("my_event");
+eventEmitter.on("my_event", () => {
+  console.log("event emitted successfully.");
+});
+
+eventEmitter.emit("my_event", "hwangblood", "22010430305");
